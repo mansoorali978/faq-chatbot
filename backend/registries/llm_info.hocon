@@ -1,0 +1,15 @@
+# Custom LLM info file that adds Groq models
+{
+  "llama3.2": {
+    "class": "ollama",
+    "model_info_url": "https://ollama.com/library/llama3.2",
+    "modalities": {
+      "input": [ "text" ],
+      "output": [ "text" ]
+    },
+    "capabilities": [ "tools" ],
+    "context_window_size": 128000,
+    "max_output_tokens": 4096,
+    "knowledge_cutoff": "unknown"
+  }
+}

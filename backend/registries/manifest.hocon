@@ -1,0 +1,4 @@
+# manifest.hocon - Registry of all active agent networks
+{
+  "faq_agent.hocon": true
+}

@@ -1,0 +1,61 @@
+name: CI/CD — Build & Push Docker Images
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Set up Docker Buildx
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      # Step 3: Log in to DockerHub
+      - name: Login to DockerHub
+        if: github.ref == 'refs/heads/main'
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      # Step 4: Build & push backend image
+      - name: Build and push backend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./backend
+          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/faq-chatbot-backend:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/faq-chatbot-backend:${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # Step 5: Build & push frontend image
+      - name: Build and push frontend
+        uses: docker/build-push-action@v5
+        with:
+          context: ./frontend
+          push: ${{ github.ref == 'refs/heads/main' }}
+          tags: |
+            ${{ secrets.DOCKERHUB_USERNAME }}/faq-chatbot-frontend:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/faq-chatbot-frontend:${{ github.sha }}
+          build-args: |
+            REACT_APP_API_URL=http://localhost:8000/api/v1
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # Step 6: Verify images (PR builds only — no push)
+      - name: Summary
+        run: |
+          echo "✅ Build complete"
+          echo "Backend image: ${{ secrets.DOCKERHUB_USERNAME }}/faq-chatbot-backend:latest"
+          echo "Frontend image: ${{ secrets.DOCKERHUB_USERNAME }}/faq-chatbot-frontend:latest"

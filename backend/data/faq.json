@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "category": "Bank Account",
+    "question": "How do I change my registered bank account?",
+    "answer": "You can change your registered bank account by submitting a written request along with a cancelled cheque of the new account. Submit the request at any branch or through the customer portal."
+  },
+  {
+    "id": 2,
+    "category": "Bank Account",
+    "question": "Is there any charge for updating my bank account?",
+    "answer": "No, there is no charge for updating your registered bank account details."
+  },
+  {
+    "id": 3,
+    "category": "Premium Payment",
+    "question": "How can I pay my premium online?",
+    "answer": "You can pay your premium online through Net Banking, UPI, Credit/Debit card via the customer portal at www.iciciprulife.com or through the iLife app."
+  },
+  {
+    "id": 4,
+    "category": "Premium Payment",
+    "question": "What happens if I miss a premium payment?",
+    "answer": "If you miss a premium payment, your policy enters a grace period of 30 days (15 days for monthly mode). If unpaid within the grace period, the policy lapses."
+  },
+  {
+    "id": 5,
+    "category": "Policy Documents",
+    "question": "How do I get a duplicate policy document?",
+    "answer": "You can request a duplicate policy document by submitting a written request along with an indemnity bond and prescribed fee at the nearest branch."
+  },
+  {
+    "id": 6,
+    "category": "Claims",
+    "question": "How do I file a claim?",
+    "answer": "To file a claim, contact our claims team at 1860-266-7766, visit the nearest branch, or submit documents through the online claims portal. Required documents include claim form, original policy, and ID proof."
+  },
+  {
+    "id": 7,
+    "category": "Claims",
+    "question": "How long does claim settlement take?",
+    "answer": "Claims are typically settled within 30 days of receiving all required documents. ICICI Pru Life aims to settle all valid claims within this period."
+  },
+  {
+    "id": 8,
+    "category": "Nomination",
+    "question": "How can I change my nominee?",
+    "answer": "You can change your nominee by submitting a nomination change request form at any branch or through the customer portal with valid ID proofs."
+  },
+  {
+    "id": 9,
+    "category": "Address",
+    "question": "How do I update my address?",
+    "answer": "Submit an address change request along with valid address proof (Aadhaar, utility bill, passport) at any branch or through the customer portal."
+  },
+  {
+    "id": 10,
+    "category": "Surrender",
+    "question": "How do I surrender my policy?",
+    "answer": "You can surrender your policy by visiting the nearest branch with the original policy document, surrender request form, and ID proof. Surrender value will be credited to your registered bank account."
+  }
+]

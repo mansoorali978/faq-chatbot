@@ -1,0 +1,49 @@
+# faq_agent.hocon
+# A two-agent network:
+#   1. faq_frontman     - receives user question, manages conversation
+#   2. faq_lookup_tool  - CodedTool that searches the FAQ JSON dataset
+
+{
+  "llm_config": {
+    "model_name": "llama3.1"
+  },
+
+  "tools": [
+    {
+      "name": "faq_frontman",
+      "function": {
+        "description": "I am a helpful FAQ assistant for ICICI Pru Life insurance. I answer questions about financial transactions, premium payments, claims, bank account changes, and policy management. I maintain conversation context across multiple turns."
+      },
+      "instructions": """
+        You are a friendly and knowledgeable FAQ assistant for ICICI Pru Life.
+        
+        When a user asks a question:
+        1. Use the FaqLookupTool to search for the relevant answer in the FAQ database.
+        2. If you find a match, provide the answer clearly and offer to answer follow-up questions.
+        3. If no exact match is found, use the closest related answer and acknowledge it may not fully address their question.
+        4. Always maintain context from previous turns in the conversation.
+        5. Be concise, friendly, and professional.
+        
+        Never make up answers. Always base responses on the FAQ data provided by FaqLookupTool.
+      """,
+      "tools": ["FaqLookupTool"]
+    },
+    {
+      "name": "FaqLookupTool",
+      "function": {
+        "description": "Searches the FAQ database for answers to user questions about ICICI Pru Life insurance policies and financial transactions.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string",
+              "description": "The user's question or keywords to search in the FAQ database"
+            }
+          },
+          "required": ["query"]
+        }
+      },
+      "class": "faq_agent.faq_lookup_tool.FaqLookupTool"
+    }
+  ]
+}

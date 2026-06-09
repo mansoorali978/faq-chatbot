@@ -1,0 +1,56 @@
+# faq_llm_info.hocon
+# Custom LLM info file that adds the Groq models (OpenAI-compatible API):
+#   llama-3.3-70b-versatile  -- model served by Groq at api.groq.com
+{
+  "llama-3.3-70b-versatile": {
+    "class": "openai",
+    "model_info_url": "https://console.groq.com/docs/models",
+    "modalities": {
+      "input": [ "text" ],
+      "output": [ "text" ]
+    },
+    "capabilities": [ "tools" ],
+    "context_window_size": 32768,
+    "max_output_tokens": 8192,
+    "knowledge_cutoff": "unknown"
+  },
+
+  "llama3-70b-8192": {
+    "class": "openai",
+    "model_info_url": "https://console.groq.com/docs/models",
+    "modalities": {
+      "input": [ "text" ],
+      "output": [ "text" ]
+    },
+    "capabilities": [ "tools" ],
+    "context_window_size": 8192,
+    "max_output_tokens": 8192,
+    "knowledge_cutoff": "unknown"
+  },
+
+  "llama3.1-8b-instant": {
+    "class": "openai",
+    "model_info_url": "https://console.groq.com/docs/models",
+    "modalities": {
+      "input": [ "text" ],
+      "output": [ "text" ]
+    },
+    "capabilities": [ "tools" ],
+    "context_window_size": 131072,
+    "max_output_tokens": 8192,
+    "knowledge_cutoff": "unknown"
+  },
+
+  "mixtral-8x7b-32768": {
+    "class": "openai",
+    "model_info_url": "https://console.groq.com/docs/models",
+    "modalities": {
+      "input": [ "text" ],
+      "output": [ "text" ]
+    },
+    "capabilities": [ "tools" ],
+    "context_window_size": 32768,
+    "max_output_tokens": 8192,
+    "knowledge_cutoff": "unknown"
+  }
+}

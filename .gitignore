@@ -1,0 +1,24 @@
+[System.IO.File]::WriteAllText("D:\Projects\faq-chatbot\.gitignore", @"
+# Python virtual environment
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+backend/**/*.pyc
+
+# Environment files
+.env
+backend/.env
+
+# Node modules (if any)
+frontend/node_modules/
+
+# Build output
+frontend/build/
+
+# OS files
+.DS_Store
+Thumbs.db
+"@)
+
+backend/registries/llm_info.hocon
+backend/registries/faq_llm_info.hocon
