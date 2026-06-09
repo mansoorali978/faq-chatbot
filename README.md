@@ -37,7 +37,7 @@ natural multi-turn conversations like:
 ## Quick Start
 
 ```bash
-git clone https://github.com/<your-username>/faq-chatbot.git
+git clone https://github.com/mansoorali978/faq-chatbot.git
 cd faq-chatbot
 cp .env.example .env       # Add your OPENAI_API_KEY
 docker compose up --build
@@ -47,8 +47,8 @@ Visit **http://localhost:3000**
 
 ## DockerHub Images
 
-- Backend: `docker pull <dockerhub-username>/faq-chatbot-backend:latest`
-- Frontend: `docker pull <dockerhub-username>/faq-chatbot-frontend:latest`
+- Backend: `docker pull mansoorali978/faq-chatbot-backend:latest`
+- Frontend: `docker pull mansoorali978/faq-chatbot-frontend:latest`
 
 ## API Reference
 

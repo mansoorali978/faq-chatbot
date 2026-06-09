@@ -8,10 +8,12 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
       - AGENT_MANIFEST_FILE=/app/registries/manifest.hocon
       - AGENT_TOOL_PATH=/app/coded_tools
       - PYTHONPATH=/app
+      - OLLAMA_HOST=http://host.docker.internal:11434
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
       interval: 30s
