@@ -14,6 +14,8 @@ jobs:
       # Step 1: Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
       # Step 2: Set up Docker Buildx
       - name: Set up Docker Buildx
@@ -29,7 +31,7 @@ jobs:
 
       # Step 4: Build & push backend image
       - name: Build and push backend
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./backend
           push: ${{ github.ref == 'refs/heads/main' }}
@@ -41,7 +43,7 @@ jobs:
 
       # Step 5: Build & push frontend image
       - name: Build and push frontend
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v6
         with:
           context: ./frontend
           push: ${{ github.ref == 'refs/heads/main' }}
@@ -57,5 +59,3 @@ jobs:
       - name: Summary
         run: |
           echo "✅ Build complete"
-          echo "Backend image: ${{ secrets.DOCKERHUB_USERNAME }}/faq-chatbot-backend:latest"
-          echo "Frontend image: ${{ secrets.DOCKERHUB_USERNAME }}/faq-chatbot-frontend:latest"
