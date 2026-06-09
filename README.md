@@ -1,6 +1,76 @@
-# FAQ Chatbot
+# FAQ Chatbot — Neuro-SAN powered
 
-A simple FAQ chatbot with a FastAPI backend and React frontend, orchestrated with Docker Compose.
+A full-stack FAQ chatbot for ICICI Pru Life built with React, FastAPI, and Neuro-SAN.
+
+## Architecture
+
+User → React Frontend → FastAPI Backend → Neuro-SAN Agent Server
+↓
+FaqLookupTool (CodedTool)
+↓
+FAQ JSON Dataset
+
+## How Neuro-SAN Works
+
+Neuro-SAN is a data-driven multi-agent framework where agent networks are defined
+in HOCON config files. Our network has two agents:
+
+1. **faq_frontman** — The front-facing LLM agent. Receives user questions,
+   maintains conversation context (multi-turn), and delegates data lookups to
+   the FaqLookupTool.
+
+2. **FaqLookupTool** — A CodedTool (Python class) that searches the FAQ JSON
+   dataset using keyword matching and returns relevant Q&A pairs to the frontman.
+
+The AAOSA protocol lets agents autonomously decide when to delegate, enabling
+natural multi-turn conversations like:
+> User: "How do I change my bank account?"
+> Bot: "You can change it by submitting..."
+> User: "Is there any charge?"
+> Bot: "No, there is no charge." ← context maintained from previous turn
+
+## Prerequisites
+
+- Docker & Docker Compose
+- OpenAI API key (or Anthropic / Ollama)
+
+## Quick Start
+
+```bash
+git clone https://github.com/<your-username>/faq-chatbot.git
+cd faq-chatbot
+cp .env.example .env       # Add your OPENAI_API_KEY
+docker compose up --build
+```
+
+Visit **http://localhost:3000**
+
+## DockerHub Images
+
+- Backend: `docker pull <dockerhub-username>/faq-chatbot-backend:latest`
+- Frontend: `docker pull <dockerhub-username>/faq-chatbot-frontend:latest`
+
+## API Reference
+
+### POST /api/v1/chat
+
+Request:
+```json
+{
+  "message": "How do I change my bank account?",
+  "session_id": "abc123",
+  "chat_context": null
+}
+```
+
+Response:
+```json
+{
+  "answer": "You can change your registered bank account by...",
+  "session_id": "abc123",
+  "chat_context": { ... }
+}
+```
 
 ## Project Structure
 
